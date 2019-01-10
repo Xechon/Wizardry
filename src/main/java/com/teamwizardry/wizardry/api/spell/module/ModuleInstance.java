@@ -643,8 +643,12 @@ public abstract class ModuleInstance {
 	}
 
 	public ResourceLocation getIconLocation() {
-		if (icon == null)
-			return new ResourceLocation(Wizardry.MODID, "textures/gui/worktable/icons/" + getSubModuleID() + ".png");
+		if (icon == null) {
+			// TODO: Retrieve MODID!
+			
+			String iconFolder = getFactory().getDefaultIconFolder();
+			return new ResourceLocation(Wizardry.MODID, iconFolder + "/" + getSubModuleID() + ".png");
+		}
 		return icon;
 	}
 }

@@ -12,4 +12,5 @@ import java.lang.annotation.RetentionPolicy;
 @Target({ElementType.TYPE})
 public @interface RegisterModule {
 	String ID();
+	String iconPath() default "";
 }

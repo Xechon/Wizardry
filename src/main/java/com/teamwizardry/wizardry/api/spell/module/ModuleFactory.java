@@ -23,11 +23,15 @@ public class ModuleFactory {
 	private final HashMap<String, Field> configurableFields = new HashMap<>();
 	private final HashMap<String, OverrideMethod> overridableMethods = new HashMap<>();
 	private final String referenceModuleID;
+	private final String defaultIconFolder;
 	
-	ModuleFactory(String referenceModuleID, Class<? extends IModule> clazz) throws ModuleInitException {
+	ModuleFactory(String referenceModuleID, String defaultIconFolder, Class<? extends IModule> clazz) throws ModuleInitException {
 		// NOTE: Instanciable only from ModuleRegistry
 		this.clazz = clazz;
+		this.defaultIconFolder = defaultIconFolder;
 		this.referenceModuleID = referenceModuleID;
+		
+		// TODO: Find MODID of class! Is required for default icon path or other resource folders.
 		
 		// Determine configurable fields via reflection
 		for(Field field : clazz.getFields()) {
@@ -63,6 +67,16 @@ public class ModuleFactory {
 	 */
 	public String getReferenceModuleID() {
 		return referenceModuleID;
+	}
+	
+	/**
+	 * Returns the default resource folder for icons. Is used to retrieve default icon names
+	 * if no specific name is provided in configuration, e.g. in {@link ModuleInstance#getIconLocation()}.
+	 * 
+	 * @return the default resource folder for icons.
+	 */
+	public String getDefaultIconFolder() {
+		return defaultIconFolder;
 	}
 	
 	/**

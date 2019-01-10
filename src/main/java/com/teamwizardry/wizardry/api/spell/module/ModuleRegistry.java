@@ -80,8 +80,15 @@ public class ModuleRegistry {
 				if( id == null )
 					throw new ModuleInitException("Missing ID for module class " + clazz);
 				
+				String iconPath = info.getString("iconPath");
+				if( iconPath == null ) {
+					throw new ModuleInitException("Missing textures for module class " + clazz);
+				}
+				if( iconPath.isEmpty() )
+					iconPath = "textures/gui/worktable/icons";
+				
 				if( IModule.class.isAssignableFrom(clazz) ) {
-					ModuleFactory entry = new ModuleFactory(id, clazz);
+					ModuleFactory entry = new ModuleFactory(id, iconPath, clazz);
 					IDtoModuleFactory.put(id, entry);
 				}
 			}
