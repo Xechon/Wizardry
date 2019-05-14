@@ -6,7 +6,6 @@ import com.teamwizardry.wizardry.Wizardry;
 import com.teamwizardry.wizardry.api.ConfigValues;
 import com.teamwizardry.wizardry.client.core.CapeHandler;
 import com.teamwizardry.wizardry.client.core.renderer.PearlRadialUIRenderer;
-import com.teamwizardry.wizardry.client.patreon.OnlineCosmeticsDownloader;
 import com.teamwizardry.wizardry.client.render.item.RenderHaloEntity;
 import com.teamwizardry.wizardry.common.core.version.VersionChecker;
 import com.teamwizardry.wizardry.init.ModEntities;
@@ -53,8 +52,6 @@ public class ClientProxy extends CommonProxy {
 
 		if (ConfigValues.versionCheckerEnabled)
 			VersionChecker.register();
-
-		new OnlineCosmeticsDownloader();
 
 		ModEntities.initModels();
 
